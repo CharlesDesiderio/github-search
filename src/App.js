@@ -9,34 +9,37 @@ const App = () => {
   const [totalPages, setTotalPages] = useState(0)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
-  
-  const pageRef = useRef(currentPage)
 
-  const runSearch = () => {
-    fetch(`https://api.github.com/search/users?q=${query}&page=${pageRef.current}`)
+  const runSearch = (direction) => {
+    let nextPage = currentPage
+
+    if (direction === 'up') {
+      nextPage++
+    }
+    if (direction === 'down') {
+      nextPage--
+    }
+
+    fetch(`https://api.github.com/search/users?q=${query}&page=${nextPage}`)
     .then(res => res.json())
     .then(data => {
       setResults(data.items)
       console.log('page', currentPage)
       setTotalPages(Math.ceil(data.total_count / 30))
+      setCurrentPage(nextPage)
     })
   }
 
   const decPage = () => {
     if (currentPage > 1) {
-      pageRef.current = currentPage - 1
-      setCurrentPage(pageRef.current)
+      runSearch('down')
     }
-    runSearch()
   }
 
   const incPage = () => {
     if (currentPage < totalPages) {
-      pageRef.current = currentPage + 1
-      setCurrentPage(pageRef.current)
+      runSearch('up')
     }
-    runSearch()
-    console.log(currentPage)
   }
 
   return (
