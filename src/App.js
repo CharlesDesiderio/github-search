@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 import SearchBar from './components/SearchBar'
 import Results from './components/Results'
