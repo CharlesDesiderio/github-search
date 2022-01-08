@@ -24,7 +24,7 @@ const App = () => {
     .then(res => res.json())
     .then(data => {
       setResults(data.items)
-      console.log('page', currentPage)
+      console.log(data)
       setTotalPages(Math.ceil(data.total_count / 30))
       setCurrentPage(nextPage)
     })
