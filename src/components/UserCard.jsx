@@ -26,8 +26,8 @@ const UserCard = ({ name, image, link, url }) => {
       <a href={link}><h3>{ name }</h3></a>
         <p>{ userData.name }</p>
         { userData.location ? <p>Location: { userData.location }</p> : ''}
-        { userData.followers ? <p>Followers: { userData.followers }</p> : '' }
-        { userData.following ? <p>Following: { userData.following }</p> : '' }
+        <p>Followers: { userData.followers }</p>
+        <p>Following: { userData.following }</p>
       </div>
     </div>
     // </a>
