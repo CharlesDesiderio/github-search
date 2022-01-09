@@ -3,6 +3,8 @@ import { useState } from 'react'
 import SearchBar from './components/SearchBar'
 import Results from './components/Results'
 
+import styles from './App.module.css'
+
 const App = () => {
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -24,7 +26,6 @@ const App = () => {
     .then(res => res.json())
     .then(data => {
       setResults(data.items)
-      console.log(data)
       setTotalPages(Math.ceil(data.total_count / 30))
       setCurrentPage(nextPage)
     })
@@ -43,7 +44,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className={styles.App}>
       <SearchBar runSearch={runSearch} setQuery={setQuery} />
 
       <Results data={results} />
